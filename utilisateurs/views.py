@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
-from .forms import UserRegistrationForm
+from .forms import CustomAuthenticationForm, UserRegistrationForm
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
-from .forms import LoginForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import AuthenticationForm
 
 def register(request):
     if request.method == "POST":
@@ -14,28 +15,35 @@ def register(request):
             user.set_password(form.cleaned_data['password'])
             user.save()  # Sauvegarde dans la base de données PostgreSQL
             login(request, user)  # Connecte automatiquement l'utilisateur
-            return redirect('connexion')  # Redirige après l'inscription
+            return redirect('login')  # Redirige après l'inscription
     else:
         form = UserRegistrationForm()
     return render(request, 'utilisateurs/register.html', {'form': form})
 
 
 def login_view(request):
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
+    form = CustomAuthenticationForm()
+    error_message = None  # Initialisation du message d'erreur
+    
+    if request.method == "POST":
+        form = CustomAuthenticationForm(data=request.POST)
         if form.is_valid():
-            email = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            
-            # Authentification de l'utilisateur
-            user = authenticate(request, username=email, password=password)
-            
-            if user is not None:
-                login(request, user)
-                return redirect('home')  # Redirige vers la page d'accueil après connexion
-            else:
-                form.add_error(None, 'Identifiants incorrects')
-    else:
-        form = LoginForm()
+            user = form.get_user()
+            login(request, user)
+            return redirect('home')
+        else:
+            # Personnalisation du message d'erreur
+            error_message = (
+                "Adresse email ou mot de passe incorrect. "
+                "Veuillez vérifier vos identifiants et réessayer."
+            )
+    
+    return render(request, 'utilisateurs/login.html', {'form': form, 'error_message': error_message})
 
-    return render(request, 'utilisateurs/login.html', {'form': form})
+def logout_view(request):
+    logout(request)  # Déconnecte l'utilisateur
+    return redirect('login') 
+
+@login_required  # Assure que seul un utilisateur connecté peut accéder à la page
+def home(request):
+    return render(request, 'utilisateurs/home.html')

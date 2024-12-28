@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -10,71 +11,119 @@
     <style>
         body {
             background-color: #f8f9fa;
+            overflow-y: hidden; /* Supprime le défilement vertical */
         }
         .form-container {
-            max-width: 900px;
-            margin: auto;
-        }
-        .form-section {
-            flex: 1;
-            background: white;
-            border-radius: 8px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .image-section {
-            flex: 1;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 0 1rem; /* Réduction des marges latérales */
         }
-        .image-section img {
-            max-width: 100%;
+        .image-section {
+            background: url("{% static 'images/img_inscription1.png' %}") no-repeat center center;
+            background-size: cover;
+            height: 100vh;
+        }
+        .form-section {
+            padding: 1.5rem; /* Réduction de l'espacement interne */
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            max-width: 600px; /* Largeur accrue */
+            width: 100%;
+        }
+        .form-section h1 {
+            font-size: 1.8rem; /* Réduction de la taille du titre */
+            margin-bottom: 1rem; /* Réduction de l'espacement sous le titre */
+            color: #007bff;
+        }
+        .form-section .form-control {
+            font-size: 0.9rem; /* Légère réduction de la taille du texte */
+            padding: 0.75rem; /* Réduction de l'espacement interne */
+            height: auto;
             border-radius: 8px;
+            border: 1px solid #ced4da;
+            transition: all 0.3s ease;
         }
-        .form-container h1 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
+        .form-section .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+            outline: none;
         }
-        .form-container button {
-            font-size: 1.2rem;
+        .form-section .form-control:invalid {
+          border-color: #dc3545;
+        }
+        .form-section .form-control:valid {
+          border-color: #28a745;
+        }
+        .form-section button {
+            font-size: 1rem; /* Réduction de la taille des boutons */
+            padding: 0.6rem; /* Réduction de l'espacement interne des boutons */
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .form-section button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        .secondary-button {
+            margin-top: 0.75rem; /* Réduction de l'espacement au-dessus du bouton secondaire */
+            font-size: 0.9rem;
+            padding: 0.6rem;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+            border: 1px solid #ced4da;
+            color: #007bff;
+            transition: all 0.3s ease;
+        }
+        .secondary-button:hover {
+            background-color: #e9ecef;
+            color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <!-- Charger les fichiers statiques -->
-    {% load static %}
-
-    <div class="container py-5">
-        <div class="form-container d-flex align-items-center">
+    <div class="container-fluid form-container">
+        <div class="row w-100">
             <!-- Section Image -->
-            <div class="image-section">
-                <img src="{% static 'images/img_inscription1.png' %}" alt="Illustration" />
+            <div class="col-lg-6 image-section d-none d-lg-block">
+                <!-- L'image est définie en arrière-plan via CSS -->
             </div>
-            
+
             <!-- Section Formulaire -->
-            <div class="form-section">
-                <h1 class="text-center text-primary">Inscription</h1>
-                <form method="post">
-                    {% csrf_token %}
-                    <div class="form-group mb-3">
-                        <label for="username" class="form-label">Nom d'utilisateur</label>
-                        <input type="text" id="username" name="username" class="form-control" placeholder="Entrez votre nom d'utilisateur">
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="email" class="form-label">Adresse email</label>
-                        <input type="email" id="email" name="email" class="form-control" placeholder="Entrez votre adresse email">
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="password" class="form-label">Mot de passe</label>
-                        <input type="password" id="password" name="password" class="form-control" placeholder="Entrez votre mot de passe">
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="password_confirm" class="form-label">Confirmer le mot de passe</label>
-                        <input type="password" id="password_confirm" name="password_confirm" class="form-control" placeholder="Confirmez votre mot de passe">
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100 mt-3">S'inscrire</button>
-                </form>
+            <div class="col-lg-6 col-12 d-flex align-items-center justify-content-center">
+                <div class="form-section mx-2">
+                    <h1 class="text-center">Inscription</h1>
+                    <form method="post">
+                        {% csrf_token %}
+                        {% if form.non_field_errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {% for error in form.non_field_errors %}
+                                <div>{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        <div class="form-group mb-3">
+                            <label for="username" class="form-label">Nom d'utilisateur</label>
+                            <input type="text" id="username" name="username" class="form-control" placeholder="Entrez votre nom d'utilisateur" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="email" class="form-label">Adresse email</label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Entrez votre adresse email" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="password" class="form-label">Mot de passe</label>
+                            <input type="password" id="password" name="password" class="form-control" placeholder="Entrez votre mot de passe" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="password_confirm" class="form-label">Confirmer le mot de passe</label>
+                            <input type="password" id="password_confirm" name="password_confirm" class="form-control" placeholder="Confirmez votre mot de passe" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 mt-2">S'inscrire</button>
+                        <a href="{% url 'login' %}" class="btn secondary-button w-100">Se connecter</a>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

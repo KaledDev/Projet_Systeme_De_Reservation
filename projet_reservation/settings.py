@@ -107,6 +107,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+DEBUG = True
+
 STATIC_URL = '/static/'
 
 # Internationalization

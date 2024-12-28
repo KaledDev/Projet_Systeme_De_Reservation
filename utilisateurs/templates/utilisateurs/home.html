@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<style>
+    .card-img-uniform {
+    height: 200px; /* Ajustez cette valeur selon vos besoins */
+    object-fit: cover; /* Pour garantir que l'image remplit bien la zone définie */
+    width: 100%; /* Assurez une largeur uniforme */
+}
+
+.navbar {
+            background-color: #006c31; /* Couleur de fond de la navbar */
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem; /* Taille de la police de la marque */
+            font-weight: bold; /* Met en gras la marque */
+            color: #ffffff !important; /* Couleur du texte */
+        }
+
+        .navbar-nav .nav-link {
+            font-size: 1.1rem; /* Taille de la police des liens */
+            color: #ffffff !important; /* Couleur des liens */
+            margin-right: 20px; /* Espacement entre les éléments */
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #FF560B !important; /* Couleur du texte au survol */
+            text-decoration: underline; /* Surligner au survol */
+        }
+
+        .navbar-nav .nav-item.active .nav-link {
+            color: #FF560B !important; /* Couleur pour l'élément actif */
+            font-weight: bold; /* Met en gras l'élément actif */
+        }
+
+        /* Effet de transition au survol */
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+
+        /* Style pour le bouton de bascule (hamburger menu) */
+        .navbar-toggler-icon {
+            background-color: #ffffff; /* Couleur du bouton hamburger */
+        }
+
+        /* Style de l'élément de navigation lorsque l'écran est petit */
+        @media (max-width: 767px) {
+            .navbar-nav {
+                text-align: center;
+            }
+
+            .navbar-nav .nav-item {
+                margin: 10px 0;
+            }
+        }
+
+</style>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Réservations</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Restaurants</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Hôtels</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Événements</a>
+                </li>
+                <form action="{% url 'logout' %}" method="post" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-link nav-link">Se déconnecter</button>
+                </form>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1 class="text-center">Bienvenue, {{ user.username }} !</h1>
+        <p class="text-center">Réservez facilement votre prochaine expérience en ligne, que ce soit pour un restaurant, un hôtel ou un événement.</p>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="../../static/images/restaurant-interior (1).jpg" class="card-img-top card-img-uniform" alt="Restaurants">
+                    <div class="card-body">
+                        <h5 class="card-title">Restaurants</h5>
+                        <p class="card-text">Trouvez le restaurant idéal pour vos sorties et réservez en un clin d'œil.</p>
+                        <a href="#" class="btn btn-primary btn-block">Découvrir</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="../../static/images/modern-villa-with-multiple-lights-sun-loungers-asprovalta-greece.jpg" class="card-img-top card-img-uniform" alt="Hôtels">
+                    <div class="card-body">
+                        <h5 class="card-title">Hôtels</h5>
+                        <p class="card-text">Réservez un séjour dans les hôtels les plus confortables.</p>
+                        <a href="#" class="btn btn-primary btn-block">Découvrir</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="../../static/images/rb_2263.png" class="card-img-top card-img-uniform" alt="Événements">
+                    <div class="card-body">
+                        <h5 class="card-title">Événements</h5>
+                        <p class="card-text">Réservez vos places pour les événements à venir et ne manquez aucune occasion.</p>
+                        <a href="#" class="btn btn-primary btn-block">Découvrir</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

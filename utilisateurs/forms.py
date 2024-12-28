@@ -28,15 +28,28 @@ class UserRegistrationForm(forms.ModelForm):
             raise forms.ValidationError("Les mots de passe ne correspondent pas.")
         return cleaned_data
 
-class LoginForm(AuthenticationForm):
-    username = forms.EmailField(label='Adresse email', max_length=100)
-    password = forms.CharField(label='Mot de passe', widget=forms.PasswordInput)
 
+class CustomAuthenticationForm(AuthenticationForm):
+    username = forms.CharField(
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Nom d\'utilisateur',
+            'id': 'username'
+        }),
+        label="Nom d'utilisateur"
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Mot de passe',
+            'id': 'password'
+        }),
+        label="Mot de passe"
+    )
     error_messages = {
-        'username': {
-            'required': 'L\'adresse email est obligatoire.',
-        },
-        'password': {
-            'required': 'Le mot de passe est obligatoire.',
-        }
+        'invalid_login': (
+            "Les informations de connexion ne sont pas valides. "
+            "Veuillez vérifier votre nom d'utilisateur et votre mot de passe."
+        ),
+        'inactive': ("Ce compte est inactif."),
     }
