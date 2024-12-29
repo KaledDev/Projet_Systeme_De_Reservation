@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Administrateur</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background-color: #f7f7f7;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            margin: 15px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .card-text {
+            font-size: 1rem;
+            color: #555;
+        }
+        .btn {
+            font-weight: bold;
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        .card-img-top {
+            border-radius: 10px;
+            height: 200px;
+            object-fit: cover;
+        }
+        .icon-container {
+            font-size: 2rem;
+            color: #fff;
+            background-color: #007bff;
+            padding: 15px;
+            border-radius: 0%; /* Supprime le cercle */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .alert-container {
+            margin-top: 20px;
+        }
+        .alert {
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+        <div class="container-fluid">
+          <!-- Logo ou titre de l'admin -->
+          <a class="navbar-brand" href="{% url 'admin_dashboard' %}">
+            <i class="fas fa-tachometer-alt"></i> Tableau de bord
+          </a>
+          
+          
+          <!-- Formulaire de déconnexion avec icône -->
+          <form action="{% url 'logout' %}" method="post" class="d-inline">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-link nav-link d-flex align-items-center">
+              <i class="fas fa-sign-out-alt me-2"></i> Se déconnecter
+            </button>
+          </form>
+        </div>
+      </nav>
+      
+  
+
+<div class="container">
+    <h1 class="text-center">Tableau de bord administrateur</h1>
+
+    {% if messages %}
+    <div class="alert-container">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+    <!-- Section de création -->
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <a href="{% url 'add_restaurant' %}" class="btn btn-primary">
+                <div class="icon-container mb-3">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                Ajouter un Restaurant
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'add_hotel' %}" class="btn btn-primary">
+                <div class="icon-container mb-3">
+                    <i class="fas fa-hotel"></i>
+                </div>
+                Ajouter un Hôtel
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'add_event' %}" class="btn btn-primary">
+                <div class="icon-container mb-3">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                Ajouter un Événement
+            </a>
+        </div>
+    </div>
+
+    <!-- Section des éléments créés (Restaurants, Hôtels, Événements) -->
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <h3>Restaurants</h3>
+            {% for restaurant in restaurants %}
+            <div class="card">
+                <img src="{{ restaurant.image.url }}" class="card-img-top" alt="Restaurant">
+                <div class="card-body">
+                    <h5 class="card-title">{{ restaurant.name }}</h5>
+                    <p class="card-text">{{ restaurant.description|truncatewords:15 }}</p>
+                    <a href="{% url 'restaurant_detail' restaurant_id=restaurant.id %}" class="btn btn-primary">Voir Détails</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="col-md-4">
+            <h3>Hôtels</h3>
+            {% for hotel in hotels %}
+            <div class="card">
+                <img src="{{ hotel.image.url }}" class="card-img-top" alt="Hotel">
+                <div class="card-body">
+                    <h5 class="card-title">{{ hotel.name }}</h5>
+                    <p class="card-text">{{ hotel.description|truncatewords:15 }}</p>
+                    <a href="{% url 'hotel_detail' hotel_id=hotel.id %}" class="btn btn-primary">Voir Détails</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="col-md-4">
+            <h3>Événements</h3>
+            {% for event in events %}
+            <div class="card">
+                <img src="{{ event.image.url }}" class="card-img-top" alt="Event">
+                <div class="card-body">
+                    <h5 class="card-title">{{ event.name }}</h5>
+                    <p class="card-text">{{ event.description|truncatewords:15 }}</p>
+                    <a href="{% url 'event_detail' event_id=event.id %}" class="btn btn-primary">Voir Détails</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+</div>
+
+</body>
+</html>

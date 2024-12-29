@@ -16,13 +16,29 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from restaurantHotelEvent import views
 from utilisateurs import views as user_views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
+    path('admin_dashboard/', views.admin_dashboard, name='admin_dashboard'),
     path('admin/', admin.site.urls),
     path('inscription/', user_views.register, name='inscription'),
     path('', user_views.register, name='inscription'),
     path('login/', user_views.login_view, name='login'),
     path('home/', user_views.home, name='home'),
     path('logout/', user_views.logout_view, name='logout'),
-]
+    path('add_restaurant/', views.add_restaurant, name='add_restaurant'),
+    path('add_hotel/', views.add_hotel, name='add_hotel'),
+    path('add_event/', views.add_event, name='add_event'),
+    path('restaurant/<int:restaurant_id>/', views.restaurant_detail, name='restaurant_detail'),
+    path('hotel/<int:hotel_id>/', views.hotel_detail, name='hotel_detail'),
+    path('event/<int:event_id>/', views.event_detail, name='event_detail'),
+    path('event/update/<int:event_id>/', views.update_event, name='update_event'),
+    path('event/delete/<int:event_id>/', views.delete_event, name='delete_event'),
+    path('hotel/update/<int:id>/', views.update_hotel, name='update_hotel'),
+    path('hotel/delete/<int:hotel_id>/', views.delete_hotel, name='delete_hotel'),
+    path('restaurant/update/<int:id>/', views.update_restaurant, name='update_restaurant'),
+    path('restaurant/delete/<int:id>/', views.delete_restaurant, name='delete_restaurant'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

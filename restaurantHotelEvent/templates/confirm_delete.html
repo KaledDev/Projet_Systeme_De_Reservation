@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation de suppression</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Voulez-vous vraiment supprimer {{ item.name }} ?</h2>
+        <div class="text-center mt-4">
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Oui, Supprimer</button>
+                <a href="{{ cancel_url }}" class="btn btn-secondary">Annuler</a>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

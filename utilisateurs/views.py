@@ -30,7 +30,13 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('home')
+
+            # Vérifier si l'utilisateur est un super utilisateur
+            if user.is_superuser:
+                return redirect('admin_dashboard')  # Rediriger vers le tableau de bord admin
+            else:
+                return redirect('home')  # Rediriger vers la page d'accueil
+
         else:
             # Personnalisation du message d'erreur
             error_message = (

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier Restaurant</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Modifier le Restaurant</h1>
+
+        <a href="{% url 'admin_dashboard' %}" class="btn btn-secondary mb-4">
+            <i class="fas fa-arrow-left"></i> Retour
+        </a>
+
+        <form method="POST" enctype="multipart/form-data" action="{% url 'update_restaurant' restaurant.id %}">
+            {% csrf_token %}
+
+            {% if form.errors %}
+            <div class="alert alert-danger">
+                <ul>
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            <!-- Champ pour le nom du restaurant -->
+            <div class="form-group">
+                <label for="name">Nom du Restaurant</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Nom du restaurant" value="{{ restaurant.name }}" required>
+            </div>
+
+            <!-- Champ pour la description -->
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="description" name="description" rows="3" placeholder="Description du restaurant" required>{{ restaurant.description }}</textarea>
+            </div>
+
+            <!-- Champ pour la localisation -->
+            <div class="form-group">
+                <label for="location">Localisation</label>
+                <input type="text" class="form-control" id="location" name="location" placeholder="Localisation du restaurant" value="{{ restaurant.location }}" required>
+            </div>
+
+            <!-- Champ pour la capacité d'accueil -->
+            <div class="form-group">
+                <label for="seating_capacity">Capacité d'accueil</label>
+                <input type="number" class="form-control" id="seating_capacity" name="seating_capacity" placeholder="Capacité d'accueil du restaurant" value="{{ restaurant.seating_capacity }}" required>
+            </div>
+
+            <!-- Champ pour l'image -->
+            <div class="form-group">
+                <label for="image">Image</label>
+                <input type="file" class="form-control-file" id="image" name="image">
+                {% if restaurant.image %}
+                <small class="form-text text-muted">Image actuelle : <a href="{{ restaurant.image.url }}" target="_blank">{{ restaurant.image.name }}</a></small>
+                {% endif %}
+            </div>
+
+            <!-- Boutons d'action -->
+            <button type="submit" class="btn btn-primary btn-block">Enregistrer les Modifications</button>
+            <a href="{% url 'restaurant_detail' restaurant.id %}" class="btn btn-secondary btn-block">Annuler</a>
+        </form>
+    </div>
+</body>
+</html>
