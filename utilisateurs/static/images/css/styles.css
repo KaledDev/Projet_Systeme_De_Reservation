@@ -1,0 +1,509 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    overflow-y: hidden;
+}
+
+.form-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+}
+.image-section {
+    background: url("{% static 'images/img_inscription1.png' %}") no-repeat center center;
+    background-size: cover;
+    height: 100vh;
+}
+.form-section {
+    padding: 1.5rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    max-width: 600px; 
+    width: 100%;
+}
+.form-section h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem; 
+    color: #007bff;
+}
+.form-section .form-control {
+    font-size: 0.9rem;
+    padding: 0.75rem; 
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    transition: all 0.3s ease;
+}
+.form-section .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+.form-section .form-control:invalid {
+  border-color: #dc3545;
+}
+.form-section .form-control:valid {
+  border-color: #28a745;
+}
+.form-section button {
+    font-size: 1rem;
+    padding: 0.6rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.form-section button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+.secondary-button {
+    margin-top: 0.75rem; 
+    font-size: 0.9rem;
+    padding: 0.6rem;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    color: #007bff;
+    transition: all 0.3s ease;
+}
+.secondary-button:hover {
+    background-color: #e9ecef;
+    color: #0056b3;
+}
+.form-container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.image-section {
+    background: url("{% static 'images/img_inscription1.png' %}") no-repeat center center;
+    background-size: cover;
+    height: 100vh;
+}
+.form-section {
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+.form-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #007bff;
+}
+.form-section .form-control {
+    font-size: 1rem;
+    padding: 1rem;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    transition: all 0.3s ease;
+}
+.form-section .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+.form-section .form-control:invalid {
+    border-color: #dc3545;
+}
+.form-section .form-control:valid {
+    border-color: #28a745;
+}
+.form-section button {
+    font-size: 1.2rem;
+    padding: 0.8rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.form-section button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+.secondary-button {
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
+      padding: 0.6rem;
+      border-radius: 8px;
+      background-color: #f8f9fa;
+      border: 1px solid #ced4da;
+      color: #007bff;
+      transition: all 0.3s ease;
+  }
+  .secondary-button:hover {
+      background-color: #e9ecef;
+      color: #0056b3;
+  }
+.errors ul {
+    list-style-type: none;
+    padding: 0;
+    color: red;
+    font-size: 0.9rem;
+}
+.card-img-uniform {
+    height: 200px;
+    object-fit: cover;
+    width: 100%;    
+    }
+
+.navbar {
+background-color: #006c31;         
+}
+
+.navbar-brand {
+    font-size: 1.8rem;
+    font-weight: bold;             
+    color: #ffffff !important;         
+}
+
+.navbar-nav .nav-link {
+    font-size: 1.1rem;
+    color: #ffffff !important;
+    margin-right: 20px;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #FF560B !important;
+    text-decoration: underline;         
+}
+
+.navbar-nav .nav-item.active .nav-link {
+    color: #FF560B !important;
+    font-weight: bold;         
+}
+
+.nav-link {
+    transition: color 0.3s ease;
+}
+
+
+.navbar-toggler-icon {
+    background-color: #ffffff;
+}
+
+.header-section {
+    background: linear-gradient(to right, #007bff, #0056b3);             
+    color: white;
+    padding: 15px 0;             
+    text-align: center;
+    border-radius: 0 0 30px 30px;
+    margin-bottom: 30px;
+}
+
+.header-section h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.back-button {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    text-decoration: none;
+    background-color: #0056b3;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    border: none;
+    transition: none !important;         
+}
+
+.back-button:hover {
+    background-color: #0056b3;
+    color: white;
+    text-decoration: none;
+}
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    margin-bottom: 20px;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card-img-top {
+    border-radius: 15px 15px 0 0;
+    object-fit: cover;
+    height: 250px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #343a40;
+}
+
+.card-text {
+    color: #555;
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.info-section p {
+    font-size: 0.9rem;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.icon {
+    margin-right: 8px;
+}
+
+.btn-custom {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.btn-custom:hover {
+    background-color: #0056b3;
+}
+
+.container {
+    margin-top: 30px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: white;
+    font-weight: bold;
+}
+
+.back-button {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.back-button a {
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: #007bff;
+}
+
+.back-button a:hover {
+    text-decoration: underline;
+}
+
+.header-section {
+    background: linear-gradient(to right, #007bff, #0056b3);             
+    color: white;
+    padding: 20px 0;             
+    text-align: center;
+    border-radius: 0 0 30px 30px;
+    margin-bottom: 30px;
+}
+
+.header-section h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.back-button {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    text-decoration: none;
+    background-color: #0056b3;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    border: none;
+    transition: none !important;         }
+
+.back-button:hover {
+    background-color: #0056b3;
+    color: white;
+    text-decoration: none;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.card-img-top {
+    border-radius: 15px 15px 0 0;
+    object-fit: cover;
+    height: 250px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #343a40;
+}
+
+.card-text {
+    color: #555;
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.info-section p {
+    font-size: 0.9rem;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.icon {
+    margin-right: 8px;
+}
+
+.btn-custom {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 8px;
+    transition: background-color 0.3 ease;
+}
+
+.btn-custom:hover {
+    background-color:#0056b3;
+    color: white;
+}
+
+.container {
+    margin-top: 30px;
+}
+
+.row {
+    margin-top: 30px;
+}
+
+.header-section {
+    background: linear-gradient(to right, #007bff, #0056b3);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    border-radius: 0 0 30px 30px;
+    margin-bottom: 30px;
+}
+
+.header-section h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.back-button {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    text-decoration: none;
+    background-color: #0056b3;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    border: none;
+    transition: none !important; 
+}
+
+.back-button:hover {
+    color: white;            
+    text-decoration: none;         
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.card-img-top {
+    border-radius: 15px 15px 0 0;
+    object-fit: cover;
+    height: 250px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #343a40;
+}
+
+.card-text {
+    color: #555;
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.info-section p {
+    font-size: 0.9rem;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.icon {
+    margin-right: 8px;
+}
+
+.btn-custom {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+.btn-custom:hover {
+    color: white;
+    background: #0056b3;
+}
+
+.container {
+    margin-top: 30px;
+}
+
+.row {
+    margin-top: 30px;
+}
+
+@media (max-width: 767px) {
+    .navbar-nav {
+        text-align: center;
+    }
+
+    .navbar-nav .nav-item {
+        margin: 10px 0;
+    }
+}

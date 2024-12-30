@@ -58,7 +58,7 @@ def add_event(request):
         form = EventForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Hôtel créé avec succès.')
+            messages.success(request, 'Evenement créé avec succès.')
             return redirect('admin_dashboard')
     else:
         form = EventForm()

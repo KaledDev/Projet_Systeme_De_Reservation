@@ -70,13 +70,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Restaurants</a>
+                    <a class="nav-link" href="{% url 'discover_restaurants' %}">Restaurants</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Hôtels</a>
+                    <a class="nav-link" href="{% url 'discover_hotels' %}">Hôtels</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Événements</a>
+                    <a class="nav-link" href="{% url 'discover_events' %}">Événements</a>
                 </li>
                 <form action="{% url 'logout' %}" method="post" class="d-inline">
                     {% csrf_token %}
@@ -96,7 +96,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Restaurants</h5>
                         <p class="card-text">Trouvez le restaurant idéal pour vos sorties et réservez en un clin d'œil.</p>
-                        <a href="#" class="btn btn-primary btn-block">Découvrir</a>
+                        <a href="{% url 'discover_restaurants' %}" class="btn btn-primary btn-block">Découvrir</a>
                     </div>
                 </div>
             </div>
@@ -106,7 +106,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Hôtels</h5>
                         <p class="card-text">Réservez un séjour dans les hôtels les plus confortables.</p>
-                        <a href="#" class="btn btn-primary btn-block">Découvrir</a>
+                        <a href="{% url 'discover_hotels' %}" class="btn btn-primary btn-block">Découvrir</a>
                     </div>
                 </div>
             </div>
@@ -116,7 +116,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Événements</h5>
                         <p class="card-text">Réservez vos places pour les événements à venir et ne manquez aucune occasion.</p>
-                        <a href="#" class="btn btn-primary btn-block">Découvrir</a>
+                        <a href="{% url 'discover_events' %}" class="btn btn-primary btn-block">Découvrir</a>
                     </div>
                 </div>
             </div>

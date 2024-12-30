@@ -5,6 +5,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
+from restaurantHotelEvent.models import Restaurant, Hotel, Event
+
 
 def register(request):
     if request.method == "POST":
@@ -53,3 +55,18 @@ def logout_view(request):
 @login_required  # Assure que seul un utilisateur connecté peut accéder à la page
 def home(request):
     return render(request, 'utilisateurs/home.html')
+
+def discover_restaurants(request):
+    # Récupère tous les restaurants depuis la base de données
+    restaurants = Restaurant.objects.all()
+    return render(request, 'utilisateurs/discover_restaurants.html', {'restaurants': restaurants})
+
+def discover_hotels(request):
+    # Récupère tous les hôtels depuis la base de données
+    hotels = Hotel.objects.all()
+    return render(request, 'utilisateurs/discover_hotels.html', {'hotels': hotels})
+
+def discover_events(request):
+    # Récupère tous les événements depuis la base de données
+    events = Event.objects.all()
+    return render(request, 'utilisateurs/discover_events.html', {'events': events})

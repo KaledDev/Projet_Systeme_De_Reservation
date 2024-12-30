@@ -41,4 +41,7 @@ urlpatterns = [
     path('hotel/delete/<int:hotel_id>/', views.delete_hotel, name='delete_hotel'),
     path('restaurant/update/<int:id>/', views.update_restaurant, name='update_restaurant'),
     path('restaurant/delete/<int:id>/', views.delete_restaurant, name='delete_restaurant'),
+    path('discover_restaurants/', user_views.discover_restaurants, name='discover_restaurants'),
+    path('discover_hotels/', user_views.discover_hotels, name='discover_hotels'),
+    path('discover_events/', user_views.discover_events, name='discover_events'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

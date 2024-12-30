@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Découvrir les Restaurants</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../../static/images/css/styles.css">
+</head>
+<body>
+    <div class="header-section">
+        <h1>Restaurants</h1>
+        <a href="{% url 'home' %}" class="back-button">Retour à l'accueil</a>
+    </div>
+    <div class="container">
+        <div class="row">
+            {% for restaurant in restaurants %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="{{ restaurant.image.url }}" class="card-img-top" alt="{{ restaurant.name }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ restaurant.name }}</h5>
+                            <div class="info-section">
+                                <p><i class="fas fa-users icon"></i>Capacité d'accueil : {{ restaurant.seating_capacity }} personnes</p>
+                                <p><i class="fas fa-map-marker-alt icon"></i>Emplacement : {{ restaurant.location }}</p>
+                            </div>
+                            <a href="#" class="btn btn-custom">Réserver</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
